@@ -29,16 +29,15 @@ export default function SecretModal({ isOpen, onClose, secretOrder, setSecretOrd
     <div style={{
       position: 'fixed',
       top: 0, left: 0, right: 0, bottom: 0,
-      background: 'rgba(0,0,0,0.8)',
-      backdropFilter: 'blur(8px)',
+      background: 'var(--overlay-scrim)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       zIndex: 1000
     }}>
-      <div className="glass-panel fade-in" style={{ width: '90%', maxWidth: '400px' }}>
-        <h2 style={{ color: 'var(--danger)', marginBottom: '1rem' }}>비밀 순서 설정 (교사용)</h2>
-        <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1rem' }}>
+      <div className="flat-panel fade-in" style={{ width: '90%', maxWidth: '400px', boxShadow: '0 8px 32px rgba(0,0,0,0.1)' }}>
+        <h2 className="subhead" style={{ marginBottom: 'var(--spacing-md)' }}>비밀 순서 설정 (교사용)</h2>
+        <p className="body" style={{ fontSize: '14px', color: 'var(--ink)', marginBottom: 'var(--spacing-md)' }}>
           입력한 순서대로 뽑히게 됩니다. 순서가 모두 소진되면 다시 랜덤으로 뽑힙니다.<br/>
           (쉼표 또는 줄바꿈으로 구분)
         </p>
@@ -48,20 +47,20 @@ export default function SecretModal({ isOpen, onClose, secretOrder, setSecretOrd
           onChange={(e) => setInputText(e.target.value)}
           placeholder="예: 홍길동, 김철수, 이영희"
           rows={4}
-          style={{ marginBottom: '1rem', resize: 'vertical' }}
+          style={{ marginBottom: 'var(--spacing-md)', resize: 'vertical' }}
         />
 
         {secretOrder.length > 0 && (
-          <div style={{ marginBottom: '1rem', fontSize: '0.9rem' }}>
+          <div className="surface-panel" style={{ marginBottom: 'var(--spacing-md)', fontSize: '14px' }}>
             현재 설정된 순서 ({secretOrder.length}명): <br/>
-            <span style={{ color: '#fbbf24' }}>{secretOrder.join(' ➔ ')}</span>
+            <span style={{ fontWeight: 600 }}>{secretOrder.join(' ➔ ')}</span>
           </div>
         )}
 
-        <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'flex-end' }}>
-          <button className="btn danger" onClick={handleClear}>초기화</button>
-          <button className="btn" onClick={onClose} style={{ background: 'transparent', border: '1px solid var(--glass-border)' }}>취소</button>
-          <button className="btn" onClick={handleSave}>저장</button>
+        <div style={{ display: 'flex', gap: 'var(--spacing-xs)', justifyContent: 'flex-end' }}>
+          <button className="btn btn-danger" onClick={handleClear}>초기화</button>
+          <button className="btn btn-secondary" onClick={onClose}>취소</button>
+          <button className="btn btn-primary" onClick={handleSave}>저장</button>
         </div>
       </div>
     </div>

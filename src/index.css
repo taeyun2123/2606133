@@ -1,16 +1,52 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Pretendard:wght@300;400;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap');
+
+@font-face {
+    font-family: 'Paperozi';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-1Thin.woff2') format('woff2');
+    font-weight: 100;
+    font-display: swap;
+}
 
 :root {
-  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-  --accent-color: #8b5cf6;
-  --accent-glow: 0 0 20px rgba(139, 92, 246, 0.6);
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --danger: #ef4444;
-  --success: #10b981;
+  /* Colors */
+  --primary: #000000;
+  --on-primary: #ffffff;
+  --ink: #000000;
+  --canvas: #ffffff;
+  --inverse-canvas: #000000;
+  --inverse-ink: #ffffff;
+  --hairline: #e6e6e6;
+  --hairline-soft: #f1f1f1;
+  --surface-soft: #f7f7f5;
+  
+  /* Color Blocks */
+  --block-lime: #dceeb1;
+  --block-lilac: #c5b0f4;
+  --block-cream: #f4ecd6;
+  --block-mint: #c8e6cd;
+  --block-pink: #efd4d4;
+  
+  --semantic-success: #1ea64a;
+  --overlay-scrim: rgba(0, 0, 0, 0.6);
+
+  /* Spacing */
+  --spacing-hair: 1px;
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+  --spacing-section: 96px;
+
+  /* Border Radius */
+  --rounded-xs: 2px;
+  --rounded-sm: 6px;
+  --rounded-md: 8px;
+  --rounded-lg: 24px;
+  --rounded-xl: 32px;
+  --rounded-pill: 50px;
+  --rounded-full: 9999px;
 }
 
 * {
@@ -20,78 +56,142 @@
 }
 
 body {
-  font-family: 'Pretendard', 'Outfit', sans-serif;
-  background: var(--bg-gradient);
-  color: var(--text-primary);
+  font-family: 'Paperozi', sans-serif;
+  background-color: var(--canvas);
+  color: var(--ink);
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.glass-panel {
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
-  border-radius: 24px;
-  box-shadow: var(--glass-shadow);
-  padding: 2rem;
+/* Typography Classes */
+.display-xl {
+  font-size: clamp(48px, 6vw, 86px);
+  font-weight: 340;
+  line-height: 1.0;
+  letter-spacing: -1.72px;
 }
 
+.subhead {
+  font-size: 26px;
+  font-weight: 340;
+  line-height: 1.35;
+  letter-spacing: -0.26px;
+}
+
+.body {
+  font-size: 18px;
+  font-weight: 320;
+  line-height: 1.45;
+  letter-spacing: -0.26px;
+}
+
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: 0.54px;
+  text-transform: uppercase;
+}
+
+/* Base Component Classes */
+.color-block-section {
+  background-color: var(--block-lime);
+  color: var(--ink);
+  border-radius: var(--rounded-lg);
+  padding: var(--spacing-xxl);
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.flat-panel {
+  background-color: var(--canvas);
+  border: 1px solid var(--hairline);
+  border-radius: var(--rounded-lg);
+  padding: var(--spacing-lg);
+}
+
+.surface-panel {
+  background-color: var(--surface-soft);
+  border-radius: var(--rounded-md);
+  padding: var(--spacing-md);
+}
+
+/* Buttons */
 .btn {
-  background: var(--accent-color);
-  color: white;
+  font-family: 'Paperozi', sans-serif;
+  font-size: 20px;
+  font-weight: 480;
+  line-height: 1.4;
+  letter-spacing: -0.1px;
   border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 12px;
-  font-weight: 600;
-  font-size: 1rem;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: var(--accent-glow);
-  font-family: inherit;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 30px rgba(139, 92, 246, 0.8);
-  background: #7c3aed;
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--on-primary);
+  border-radius: var(--rounded-pill);
+  padding: 10px 20px;
 }
 
-.btn:active {
-  transform: translateY(1px);
+.btn-primary:hover {
+  opacity: 0.9;
 }
 
-.btn.danger {
-  background: rgba(239, 68, 68, 0.2);
-  color: var(--danger);
-  box-shadow: none;
-  border: 1px solid rgba(239, 68, 68, 0.3);
+.btn-primary:active {
+  transform: scale(0.98);
 }
 
-.btn.danger:hover {
-  background: rgba(239, 68, 68, 0.3);
-  box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+.btn-secondary {
+  background-color: var(--canvas);
+  color: var(--ink);
+  border-radius: var(--rounded-pill);
+  padding: 8px 18px 10px;
+  border: 1px solid var(--hairline); /* Slightly modified from pure figma to ensure visibility on white canvas, or we can use surface soft if inside a block */
 }
 
+.btn-secondary:hover {
+  background-color: var(--surface-soft);
+}
+
+.btn-danger {
+  background-color: var(--block-pink);
+  color: var(--ink);
+  border-radius: var(--rounded-pill);
+  padding: 8px 18px 10px;
+  border: 1px solid transparent;
+}
+.btn-danger:hover {
+  border-color: #d1b5b5;
+}
+
+/* Inputs */
 input, textarea {
   width: 100%;
-  background: rgba(0, 0, 0, 0.2);
-  border: 1px solid var(--glass-border);
-  border-radius: 12px;
-  padding: 0.75rem 1rem;
-  color: white;
+  background-color: var(--canvas);
+  border: 1px solid var(--hairline);
+  border-radius: var(--rounded-md);
+  padding: 12px 14px;
+  color: var(--ink);
   font-family: inherit;
-  font-size: 1rem;
-  transition: all 0.3s ease;
+  font-size: 18px;
+  font-weight: 320;
+  transition: border-color 0.2s ease;
 }
 
 input:focus, textarea:focus {
   outline: none;
-  border-color: var(--accent-color);
-  box-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
+  border-color: var(--primary);
 }
 
 /* Scrollbar */
@@ -102,29 +202,118 @@ input:focus, textarea:focus {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
+  background: var(--hairline);
+  border-radius: var(--rounded-full);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: #ccc;
 }
 
 /* Animations */
-@keyframes spin {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-100%); }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .fade-in {
-  animation: fadeIn 0.5s ease forwards;
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Ethics Gate Styles */
+.ethics-gate-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--spacing-section) var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xl);
+}
+
+.ethics-header {
+  text-align: center;
+  animation: fadeIn 0.5s ease;
+}
+
+.ethics-header .display-xl {
+  margin-bottom: var(--spacing-md);
+}
+
+.ethics-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--spacing-lg);
+  width: 100%;
+}
+
+.ethics-card {
+  border-radius: var(--rounded-lg);
+  padding: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+.ethics-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+}
+
+.ethics-card-tags {
+  display: flex;
+  gap: var(--spacing-xs);
+  flex-wrap: wrap;
+}
+
+.ethics-tag {
+  background: var(--canvas);
+  color: var(--ink);
+  padding: 4px 12px;
+  border-radius: var(--rounded-pill);
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid var(--hairline);
+}
+
+.ethics-card-title {
+  color: var(--primary);
+  opacity: 0.8;
+}
+
+.ethics-card-subtitle {
+  font-size: 22px;
+  font-weight: 480;
+  line-height: 1.3;
+  letter-spacing: -0.2px;
+}
+
+.ethics-card-desc {
+  font-size: 16px;
+  font-weight: 320;
+  line-height: 1.5;
+  color: var(--ink);
+  opacity: 0.85;
+}
+
+.ethics-footer {
+  margin-top: var(--spacing-xl);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-ethics-agree {
+  font-size: 24px;
+  padding: 20px 40px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  white-space: normal;
+  text-align: center;
+}
+.btn-ethics-agree:hover {
+  box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+  transform: translateY(-2px);
 }

@@ -38,42 +38,24 @@ export default function SlotMachine({ students, isSpinning, onStop, forcedWinner
   return (
     <div style={{
       width: '100%',
-      height: '150px',
-      background: 'linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.05) 100%)',
-      border: '2px solid var(--accent-color)',
-      borderRadius: '24px',
+      height: '180px',
+      backgroundColor: 'var(--canvas)',
+      border: '1px solid var(--hairline)',
+      borderRadius: 'var(--rounded-lg)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      boxShadow: 'inset 0 0 20px rgba(0,0,0,0.5), 0 0 20px rgba(139, 92, 246, 0.4)',
       position: 'relative',
       overflow: 'hidden'
     }}>
-      <div style={{
-        position: 'absolute',
-        top: 0, left: 0, right: 0, height: '30px',
-        background: 'linear-gradient(180deg, rgba(0,0,0,0.6) 0%, transparent 100%)',
-        zIndex: 1
-      }} />
-      
-      <div style={{
-        fontSize: '3rem',
-        fontWeight: 800,
-        color: isSpinning ? 'rgba(255,255,255,0.8)' : '#fbbf24',
-        textShadow: isSpinning ? 'none' : '0 0 20px rgba(251, 191, 36, 0.8)',
-        transition: 'color 0.3s ease, text-shadow 0.3s ease',
+      <div className="display-xl" style={{
+        color: 'var(--ink)',
+        transition: 'color 0.3s ease',
         zIndex: 2,
-        animation: isSpinning ? 'float 0.1s infinite alternate' : 'none'
+        opacity: isSpinning ? 0.5 : 1
       }}>
         {currentName}
       </div>
-
-      <div style={{
-        position: 'absolute',
-        bottom: 0, left: 0, right: 0, height: '30px',
-        background: 'linear-gradient(0deg, rgba(0,0,0,0.6) 0%, transparent 100%)',
-        zIndex: 1
-      }} />
     </div>
   );
 }

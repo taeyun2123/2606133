@@ -3,11 +3,13 @@ import StudentList from './components/StudentList';
 import Controls from './components/Controls';
 import SlotMachine from './components/SlotMachine';
 import SecretModal from './components/SecretModal';
+import EthicsGuideGate from './components/EthicsGuideGate';
 import { useLocalStorage } from './hooks/useLocalStorage';
 
 function App() {
   const [students, setStudents] = useLocalStorage('random_presenter_students', []);
   const [secretOrder, setSecretOrder] = useLocalStorage('random_presenter_secret_order', []);
+  const [hasAgreedToEthics, setHasAgreedToEthics] = useLocalStorage('random_presenter_ethics_agreed', false);
   
   const [count, setCount] = useState(1);
   const [winners, setWinners] = useState([]);
@@ -67,8 +69,12 @@ function App() {
   // Determine if we should force a winner for the current spin
   const forcedWinner = secretOrder.length > 0 ? secretOrder[0] : null;
 
+  if (!hasAgreedToEthics) {
+    return <EthicsGuideGate onAgree={() => setHasAgreedToEthics(true)} />;
+  }
+
   return (
-    <div style={{ width: '100%', maxWidth: '800px', margin: '0 auto', padding: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem' }}>
+    <div style={{ width: '100%', maxWidth: '1280px', margin: '0 auto', padding: 'var(--spacing-section) var(--spacing-lg)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--spacing-section)' }}>
       
       {/* Header / Logo */}
       <div 
@@ -80,20 +86,14 @@ function App() {
           animation: 'fadeIn 0.5s ease'
         }}
       >
-        <h1 style={{ 
-          fontSize: '2.5rem', 
-          background: 'linear-gradient(to right, #a855f7, #ec4899)', 
-          WebkitBackgroundClip: 'text', 
-          WebkitTextFillColor: 'transparent',
-          marginBottom: '0.5rem'
-        }}>
+        <h1 className="display-xl" style={{ marginBottom: 'var(--spacing-md)' }}>
           랜덤 발표자 추출
         </h1>
-        <p style={{ color: 'var(--text-secondary)' }}>두근두근, 다음 발표자는 누구일까요?</p>
+        <p className="subhead" style={{ color: 'var(--ink)' }}>두근두근, 다음 발표자는 누구일까요?</p>
       </div>
 
-      {/* Main Area */}
-      <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '2rem', alignItems: 'center' }}>
+      {/* Main Area: Color Block */}
+      <div className="color-block-section" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-xl)', alignItems: 'center' }}>
         
         {/* Slot Machine Display */}
         <div style={{ width: '100%', maxWidth: '600px' }}>
@@ -106,16 +106,16 @@ function App() {
           
           {/* Winners Display */}
           {winners.length > 0 && (
-            <div className="fade-in" style={{ marginTop: '1.5rem', textAlign: 'center' }}>
-              <h3 style={{ marginBottom: '1rem', color: 'var(--text-secondary)' }}>🎉 당첨자 🎉</h3>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
+            <div className="fade-in" style={{ marginTop: 'var(--spacing-xl)', textAlign: 'center' }}>
+              <h3 className="eyebrow" style={{ marginBottom: 'var(--spacing-md)' }}>당첨자</h3>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--spacing-sm)', justifyContent: 'center' }}>
                 {winners.map((winner, idx) => (
-                  <div key={idx} className="glass-panel fade-in" style={{ 
-                    padding: '1rem 2rem', 
-                    fontSize: '1.5rem', 
-                    fontWeight: 'bold',
-                    background: 'rgba(139, 92, 246, 0.2)',
-                    borderColor: 'var(--accent-color)',
+                  <div key={idx} className="flat-panel fade-in" style={{ 
+                    padding: 'var(--spacing-sm) var(--spacing-lg)', 
+                    fontSize: '24px', 
+                    fontWeight: '700',
+                    border: 'none',
+                    boxShadow: '0 4px 16px rgba(0,0,0,0.06)',
                     animationDelay: `${idx * 0.1}s`
                   }}>
                     {winner}
@@ -125,22 +125,21 @@ function App() {
             </div>
           )}
         </div>
+      </div>
 
-        {/* Controls & List */}
-        <div style={{ width: '100%', display: 'flex', flexWrap: 'wrap', gap: '2rem', justifyContent: 'center' }}>
-          <StudentList students={students} setStudents={setStudents} />
-          
-          <div style={{ flex: 1, minWidth: '300px', maxWidth: '400px' }}>
-            <Controls 
-              count={count} 
-              setCount={setCount} 
-              onStart={startPicking} 
-              disabled={isSpinning || students.length === 0}
-              maxCount={students.length}
-            />
-          </div>
+      {/* Controls & List */}
+      <div style={{ width: '100%', display: 'flex', flexWrap: 'wrap', gap: 'var(--spacing-xl)', justifyContent: 'center', maxWidth: '1000px' }}>
+        <StudentList students={students} setStudents={setStudents} />
+        
+        <div style={{ flex: 1, minWidth: '300px', maxWidth: '400px' }}>
+          <Controls 
+            count={count} 
+            setCount={setCount} 
+            onStart={startPicking} 
+            disabled={isSpinning || students.length === 0}
+            maxCount={students.length}
+          />
         </div>
-
       </div>
 
       <SecretModal 

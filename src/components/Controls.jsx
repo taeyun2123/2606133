@@ -2,9 +2,9 @@ import React from 'react';
 
 export default function Controls({ count, setCount, onStart, disabled, maxCount }) {
   return (
-    <div className="glass-panel" style={{ width: '100%', maxWidth: '400px', display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem' }}>
+    <div className="flat-panel" style={{ width: '100%', maxWidth: '400px', display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <label htmlFor="count" style={{ fontWeight: 600 }}>뽑을 인원 (명)</label>
+        <label htmlFor="count" className="subhead" style={{ fontWeight: 540, fontSize: '20px' }}>뽑을 인원 (명)</label>
         <input 
           id="count"
           type="number" 
@@ -17,10 +17,10 @@ export default function Controls({ count, setCount, onStart, disabled, maxCount 
         />
       </div>
       <button 
-        className="btn" 
+        className="btn btn-primary" 
         onClick={onStart} 
         disabled={disabled || maxCount === 0}
-        style={{ opacity: disabled || maxCount === 0 ? 0.5 : 1, padding: '1rem', fontSize: '1.2rem' }}
+        style={{ opacity: disabled || maxCount === 0 ? 0.5 : 1, padding: '16px', fontSize: '24px', marginTop: 'var(--spacing-md)' }}
       >
         발표자 뽑기 시작!
       </button>
