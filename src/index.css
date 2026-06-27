@@ -317,3 +317,56 @@ input:focus, textarea:focus {
   box-shadow: 0 12px 32px rgba(0,0,0,0.15);
   transform: translateY(-2px);
 }
+
+/* Legal Modal Styles */
+.legal-modal-content {
+  width: 90%;
+  max-width: 800px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.legal-markdown-body {
+  overflow-y: auto;
+  padding-right: var(--spacing-sm);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.legal-markdown-body h1 {
+  font-size: 24px;
+  margin-bottom: var(--spacing-md);
+  margin-top: var(--spacing-md);
+  color: var(--primary);
+}
+
+.legal-markdown-body h2 {
+  font-size: 20px;
+  margin-bottom: var(--spacing-sm);
+  margin-top: var(--spacing-lg);
+}
+
+.legal-markdown-body p, .legal-markdown-body ul, .legal-markdown-body ol {
+  margin-bottom: var(--spacing-md);
+}
+
+.legal-markdown-body ul, .legal-markdown-body ol {
+  padding-left: var(--spacing-xl);
+}
+
+.legal-markdown-body li {
+  margin-bottom: var(--spacing-xs);
+}
+
+.legal-markdown-body blockquote {
+  border-left: 4px solid var(--block-lime);
+  padding-left: var(--spacing-md);
+  margin-left: 0;
+  color: #555;
+  background-color: var(--surface-soft);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: 0 var(--rounded-sm) var(--rounded-sm) 0;
+}
+

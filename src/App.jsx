@@ -4,12 +4,13 @@ import Controls from './components/Controls';
 import SlotMachine from './components/SlotMachine';
 import SecretModal from './components/SecretModal';
 import EthicsGuideGate from './components/EthicsGuideGate';
+import LegalModal from './components/LegalModal';
 import { useLocalStorage } from './hooks/useLocalStorage';
 
 function App() {
   const [students, setStudents] = useLocalStorage('random_presenter_students', []);
   const [secretOrder, setSecretOrder] = useLocalStorage('random_presenter_secret_order', []);
-  const [hasAgreedToEthics, setHasAgreedToEthics] = useLocalStorage('random_presenter_ethics_agreed', false);
+  const [hasAgreedToEthics, setHasAgreedToEthics] = useState(false);
   
   const [count, setCount] = useState(1);
   const [winners, setWinners] = useState([]);
@@ -17,6 +18,7 @@ function App() {
   const [currentSpinIndex, setCurrentSpinIndex] = useState(0); // For multiple selections
   
   const [isSecretModalOpen, setIsSecretModalOpen] = useState(false);
+  const [legalModalConfig, setLegalModalConfig] = useState({ isOpen: false, type: 'privacy' });
   const logoClickCount = useRef(0);
   const clickTimeout = useRef(null);
 
@@ -148,6 +150,18 @@ function App() {
         secretOrder={secretOrder}
         setSecretOrder={setSecretOrder}
         availableStudents={students}
+      />
+
+      {/* Legal Footer */}
+      <footer style={{ width: '100%', marginTop: 'auto', paddingTop: 'var(--spacing-xl)', display: 'flex', justifyContent: 'center', gap: 'var(--spacing-lg)', color: 'var(--ink)', opacity: 0.6, fontSize: '14px' }}>
+        <span style={{ cursor: 'pointer', textDecoration: 'underline' }} onClick={() => setLegalModalConfig({ isOpen: true, type: 'terms' })}>이용약관</span>
+        <span style={{ cursor: 'pointer', textDecoration: 'underline' }} onClick={() => setLegalModalConfig({ isOpen: true, type: 'privacy' })}>개인정보처리방침</span>
+      </footer>
+
+      <LegalModal 
+        isOpen={legalModalConfig.isOpen} 
+        onClose={() => setLegalModalConfig({ ...legalModalConfig, isOpen: false })} 
+        type={legalModalConfig.type} 
       />
     </div>
   );
